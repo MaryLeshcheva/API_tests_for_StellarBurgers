@@ -1,8 +1,8 @@
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
-import org.example.User;
-import org.example.UserClient;
-import org.example.UserGenerator;
+import user.User;
+import user.UserClient;
+import user.UserGenerator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,7 +42,7 @@ public class CreateUserNegativeParamTest {
     @Test
     @DisplayName("Создание пользователя с незаполненным обязательным полем")
     public void createUserWithOutOneParameterCheckStatusCode() {
-        ValidatableResponse responseCreate = userClient.create(user);
+        ValidatableResponse responseCreate = userClient.createUser(user);
         int actualStatusCode = responseCreate.extract().statusCode();
         boolean isUserCreated = responseCreate.extract().path("success");
         String actualMessage = responseCreate.extract().path("message" );

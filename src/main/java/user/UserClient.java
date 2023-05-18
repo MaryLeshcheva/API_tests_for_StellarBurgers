@@ -1,8 +1,8 @@
-package org.example;
+package user;
 
 import io.qameta.allure.Step;
-import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
+import client.Client;
 
 import static io.restassured.RestAssured.given;
 
@@ -13,7 +13,7 @@ public class UserClient extends Client {
     private static final String USER_PATH = "/api/auth/user";
 
     @Step("Создание пользователя")
-    public ValidatableResponse create(User user) {
+    public ValidatableResponse createUser(User user) {
         return given()
                 .spec(getSpec())
                 .body(user)

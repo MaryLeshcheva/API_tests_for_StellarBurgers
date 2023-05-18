@@ -1,8 +1,8 @@
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
-import org.example.User;
-import org.example.UserClient;
-import org.example.UserGenerator;
+import user.User;
+import user.UserClient;
+import user.UserGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class CreateUserNegativeTest {
     public void setUp() {
         userClient = new UserClient();
         user = UserGenerator.createDefault();
-        ValidatableResponse responseCreate = userClient.create(user);
+        ValidatableResponse responseCreate = userClient.createUser(user);
         accessToken = responseCreate.extract().path("accessToken");
     }
 
@@ -32,7 +32,7 @@ public class CreateUserNegativeTest {
     @Test
     @DisplayName("Создание дублированного пользователя")
     public void userCannotBeCreatedTwice() {
-        ValidatableResponse responseCreate = userClient.create(user);
+        ValidatableResponse responseCreate = userClient.createUser(user);
         int actualStatusCode = responseCreate.extract().statusCode();
         boolean isUserCreated = responseCreate.extract().path("success");
         String actualMessage = responseCreate.extract().path("message" );

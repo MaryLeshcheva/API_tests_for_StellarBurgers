@@ -1,9 +1,13 @@
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
-import org.example.*;
+import order.Order;
+import order.OrderClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import user.User;
+import user.UserClient;
+import user.UserGenerator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +28,7 @@ public class OrderTest {
         userClient = new UserClient();
         orderClient = new OrderClient();
         user = UserGenerator.createDefault();
-        ValidatableResponse responseCreate = userClient.create(user);
+        ValidatableResponse responseCreate = userClient.createUser(user);
         accessToken = responseCreate.extract().path("accessToken");
     }
 

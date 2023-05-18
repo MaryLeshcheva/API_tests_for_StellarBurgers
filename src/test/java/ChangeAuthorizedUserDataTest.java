@@ -1,8 +1,8 @@
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
-import org.example.User;
-import org.example.UserClient;
-import org.example.UserGenerator;
+import user.User;
+import user.UserClient;
+import user.UserGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class ChangeAuthorizedUserDataTest {
     public void setUp() {
         userClient = new UserClient();
         user = UserGenerator.createDefault();
-        ValidatableResponse responseCreate = userClient.create(user);
+        ValidatableResponse responseCreate = userClient.createUser(user);
         accessToken = responseCreate.extract().path("accessToken");
     }
 
